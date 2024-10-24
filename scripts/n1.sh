@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+function initProjet() {
 
 mkdir assets
 
-cat <<EOL > assets/index.html
+cat <<EOL > index.html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,4 +34,20 @@ EOL
 echo "// Element Bindings" > assets/js/main.js
 
 echo "Project structure has been created successfully."
+}
 
+function showMenu() {
+  echo "Usage: $0 [PARAM] [PARAM]"
+  echo -e "\t -i"
+  echo -e "\t -h"
+}
+
+# MAIN()
+
+if [[ $# -lt 1 ]]; then
+  showMenu
+elif [[ $1 -eq i ]]; then
+  initProjet
+else
+  echo "Not finished of this part yet."
+fi
