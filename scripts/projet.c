@@ -3,6 +3,25 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
+void writer(int fich, FILE *f) {
+  switch (fich) {
+    case 1:
+      fputs("<!DOCTYPE html>\n", f);
+      fputs("<html lang=\"en\">\n", f);
+      fputs("<head>\n", f);
+      fputs("  <meta charset=\"UTF-8\">\n", f);
+      fputs("  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n", f);
+      fputs("  <link rel=\"stylesheet\" href=\"./css/style.css\">", f);
+      fputs("  <title>Document</title>\n", f);
+      fputs("</head>\n", f);
+      fputs("<body>\n", f);
+      fputs("  \n", f);
+      fputs("  <script type=\"module\" src=\"./js/main.js\"></script>\n", f);
+      fputs("</body>\n", f);
+      fputs("</html>\n", f);
+  }
+}
+
 #define BUFFER_SIZE 256
 
 int main(int argc, char *argv[]) {
@@ -14,37 +33,28 @@ int main(int argc, char *argv[]) {
     char *files[] = {"/index.html", "./css/style.css", "./js/main.js"};
 
 
-    char html[BUFFER_SIZE];
+    char dir[BUFFER_SIZE];
+    
     int i = 0;
+    int j = 0;
     while (i < BUFFER_SIZE && argv[1][i] != '\0') {
-      html[i] = argv[1][i];
+      dir[i] = argv[1][i];
       i++;
     }
-    int j = 0;
     while (i < BUFFER_SIZE && files[0][j] != '\0') {
-      html[i] = files[0][j];
+      dir[i] = files[0][j];
       j++;
       i++;
     }
-    html[i] = '\0';
-    printf("%s\n", html);
+    dir[i] = '\0';
+    printf("%s\n", dir);
 
     mkdir(argv[1], 0755);
 
-    FILE *f = fopen(html, "w");
-      fputs("<!DOCTYPE html>\n", f);
-      fputs("<html lang=\"en\">\n", f);
-      fputs("<head>\n", f);
-      fputs("  <meta charset=\"UTF-8\">\n", f);
-      fputs("  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n", f);
-      fputs("  <link rel=\"stylesheet\" href=\"./css/style.css\">", f);
-      fputs("  <title>Document</title>\n", f);
-      fputs("</head>\n", f);
-      fputs("<body>\n", f);
-      fputs("  \n", f);
-      fputs("  <script type=\"module\" src=\"./js/main.js\"></script>", f);
-      fputs("</body>\n", f);
-      fputs("</html>\n", f);
+    FILE *f = fopen(dir, "w");
+      writer(1, f);
     fclose(f);
   }
+
+
 }
