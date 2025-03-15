@@ -56,14 +56,6 @@ int main(int argc, char *argv[]) {
     }
    
   }
-/*
-    i = 0;
-    char *fichier[BUFF_SIZE];
-    while (i <  && fichiers[0] {
-      fichier[0]
-    }
-  }
-*/
   return 0;
 }
 
@@ -129,6 +121,7 @@ char *fichier(int d, char *argv[]) {
     "/index.html",
     "/css/style.css",
     "/js/main.js",
+    "/js/module/",
   };
   int i = 0;
   int j = 0;
