@@ -40,11 +40,15 @@ int main(int argc, char *argv[]) {
       if (i == 0) {
         snprintf(cmd, BUFF_SIZE, "touch %s/%s/style.css", argv[1], dossiers[i]);
         system(cmd);
+        dir = fichier(CSS, argv);
+        writer(CSS, dir);
         printf("Created the stylesheet.\n");
       }
       else if (i == 1) {
         snprintf(cmd, BUFF_SIZE, "touch %s/%s/main.js", argv[1], dossiers[i]);
         system(cmd);
+        dir = fichier(JS, argv);
+        writer(JS, dir);
         printf("Created the script file.\n");
       }
       i++;
@@ -63,7 +67,20 @@ int main(int argc, char *argv[]) {
 }
 
 void header(FILE *f) {
-  fputs("/*.\n", f);
+  int i = 0;
+  int w = 45;
+  fputs("/", f);
+  while (i < w) {
+    fputs("*", f);
+    i++;
+  }
+  fputs("\n ", f);
+  i = 0;
+  while (i < w) {
+    fputs("*", f);
+    i++;
+  }
+  fputs("/\n\n\n", f);
 }
 
 
@@ -79,7 +96,7 @@ void writer(int d, char *dirname) {
     break;
   case CSS:
       header(f);
-      fputs("/* Global resets\n", f);
+      fputs("/* Global resets */\n", f);
     break;
   case JS:
       header(f);
