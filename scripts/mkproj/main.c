@@ -79,16 +79,16 @@ void header(FILE *f, char *argv[]) {
     i++;
   }
   fputs("\n\n", f);
-  fprintf(f, " %-15s %s\n", "Project name:", argv[1]);
-  fprintf(f, " %-15s Julius Cinco Cesar\n", "Author:");
-  fprintf(f, " %-15s knznsmn@knznsmn.com\n", "");
-  fprintf(f, " %-15s @knznsmn\n\n", "");
+  fprintf(f, " %-25s %s\n", "Project name:", argv[1]);
+  fprintf(f, " %-25s Julius Cinco Cesar\n", "Author:");
+  fprintf(f, " %-25s knznsmn@knznsmn.com\n", "");
+  fprintf(f, " %-25s @knznsmn\n\n", "");
 
   char heure[BUFF_SIZE];
   strftime(heure, sizeof(heure), "%B %d, %Y", tm);
-  fprintf(f, " %-15s %s\n", "Date created:", heure);
+  fprintf(f, " %-25s %s\n", "Date created:", heure);
   strftime(heure, sizeof(heure), "%H:%M:%S", tm);
-  fprintf(f, " %-15s %s\n\n", "", heure);
+  fprintf(f, " %-25s %s\n\n", "", heure);
 
 
   i = 0;
