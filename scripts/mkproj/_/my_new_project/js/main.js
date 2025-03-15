@@ -1,12 +1,12 @@
 /*******************************************************
 
- Project name:   my_new_project
- Author:         Julius Cinco Cesar
-                 knznsmn@knznsmn.com
-                 @knznsmn
+ Project name:             my_new_project
+ Author:                   Julius Cinco Cesar
+                           knznsmn@knznsmn.com
+                           @knznsmn
 
- Date created:   March 15, 2025
-                 23:36:13
+ Date created:             March 15, 2025
+                           23:42:14
 
 *******************************************************/
 
