@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void header(FILE *f);
 void writer(int, char *);
@@ -67,20 +68,35 @@ int main(int argc, char *argv[]) {
 }
 
 void header(FILE *f) {
+
+  time_t t = time(NULL);
+  struct tm *tm = localtime(&t);
+
   int i = 0;
-  int w = 45;
+  int w = 55;
   fputs("/", f);
   while (i < w) {
     fputs("*", f);
     i++;
   }
-  fputs("\n ", f);
+  fputs("\n\n", f);
+  fputs(" Author:\tJulius Cinco Cesar\n", f);
+  fputs("\t\tknznsmn@knznsmn.com\n", f);
+  fputs("\t\t@knznsmn\n\n", f);
+
+  char heure[BUFF_SIZE];
+    strftime(heure, sizeof(heure), "%B %d, %Y", tm);
+  fprintf(f, " Date created:\t%s\n", heure);
+  strftime(heure, sizeof(heure), "%H:%M:%S", tm);
+  fprintf(f, "\t\t%s\n\n", heure);
+
+
   i = 0;
   while (i < w) {
     fputs("*", f);
     i++;
   }
-  fputs("/\n\n\n", f);
+  fputs("/\n\n", f);
 }
 
 
@@ -90,7 +106,6 @@ void writer(int d, char *dirname) {
 
   switch (d) {
     case HTML:
-      header(f);
       fputs("<html>\n", f);
       fputs("</html>\n", f);
     break;
