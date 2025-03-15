@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void header(FILE *f);
+void writer(int, FILE *);
+
 #define BUFF_SIZE 256
 
 int main(int argc, char *argv[]) {
 
   char *dossiers[] = {
+    "/css",
+    "/js/modules",
     "/assets/imgs",
     "/assets/icons",
     "/assets/fonts",
-    "/css",
-    "/js/modules"
   };
 
   char mkdir[BUFF_SIZE];
@@ -26,4 +29,8 @@ int main(int argc, char *argv[]) {
 
 
   return 0;
+}
+
+void header(FILE *f) {
+  fputs("/*.\n", f);
 }
