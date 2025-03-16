@@ -15,53 +15,60 @@ int main(int argc, char *argv[]) {
     printf("\nUsage:\n\n\t%s <project/name>\n\n", argv[0]);
   }
   else {
-    char *dossiers[] = {
-      "/css",
-      "js",
-      "/js/modules",
-      "/assets/imgs",
-      "/assets/icons",
-      "/assets/fonts",
-    };
-
- 
-    char cmd[BUFF_SIZE];
-    char *dir;
-    snprintf(cmd, BUFF_SIZE, "mkdir %s", argv[1]);
-    system(cmd);
-    printf("Created the root directory '%s'.\n", argv[1]);
-    dir = fichier(HTML, argv);
-    writer(HTML, dir, argv);
-    
     int i = 0;
-    while (i < (sizeof(dossiers) / sizeof(dossiers[0]))) {
-      snprintf(cmd, BUFF_SIZE, "mkdir -p %s/%s", argv[1], dossiers[i]);
-      system(cmd);
-      printf("Directory '%s' created.\n", dossiers[i]);
-      if (i == 0) {
-        snprintf(cmd, BUFF_SIZE, "touch %s/%s/style.css", argv[1], dossiers[i]);
-        system(cmd);
-        dir = fichier(CSS, argv);
-        writer(CSS, dir, argv);
-        printf("Created the stylesheet.\n");
-      }
-      else if (i == 1) {
-        snprintf(cmd, BUFF_SIZE, "touch %s/%s/main.js", argv[1], dossiers[i]);
-        system(cmd);
-        dir = fichier(JS, argv);
-        writer(JS, dir, argv);
-        printf("Created the script file.\n");
-      }
-      else if (i == 2) {
-        snprintf(cmd, BUFF_SIZE, "touch %s/%s/utils.js", argv[1], dossiers[i]);
-        system(cmd);
-        dir = fichier(UTILS, argv);
-        writer(UTILS, dir, argv);
-        printf("Created the utils script file.\n");
-      }
+    char *dir;
+    while (i < BUFF_SIZE && argv[1][i] != '\0') {
       i++;
     }
-   
+    if (argv[1][i - 1] == 'c' && argv[1][i - 2] == '.') {
+      printf("The argument is a .c file\n");
+    }
+    else {
+      char *dossiers[] = {
+        "/css",
+        "js",
+        "/js/modules",
+        "/assets/imgs",
+        "/assets/icons",
+        "/assets/fonts",
+      };
+      
+      i = 0;
+      char cmd[BUFF_SIZE];
+      snprintf(cmd, BUFF_SIZE, "mkdir %s", argv[1]);
+      system(cmd);
+      printf("Created the root directory '%s'.\n", argv[1]);
+      dir = fichier(HTML, argv);
+      writer(HTML, dir, argv);
+      
+      while (i < (sizeof(dossiers) / sizeof(dossiers[0]))) {
+        snprintf(cmd, BUFF_SIZE, "mkdir -p %s/%s", argv[1], dossiers[i]);
+        system(cmd);
+        printf("Directory '%s' created.\n", dossiers[i]);
+        if (i == 0) {
+          snprintf(cmd, BUFF_SIZE, "touch %s/%s/style.css", argv[1], dossiers[i]);
+          system(cmd);
+          dir = fichier(CSS, argv);
+          writer(CSS, dir, argv);
+          printf("Created the stylesheet.\n");
+        }
+        else if (i == 1) {
+          snprintf(cmd, BUFF_SIZE, "touch %s/%s/main.js", argv[1], dossiers[i]);
+          system(cmd);
+          dir = fichier(JS, argv);
+          writer(JS, dir, argv);
+          printf("Created the script file.\n");
+        }
+        else if (i == 2) {
+          snprintf(cmd, BUFF_SIZE, "touch %s/%s/utils.js", argv[1], dossiers[i]);
+          system(cmd);
+          dir = fichier(UTILS, argv);
+          writer(UTILS, dir, argv);
+          printf("Created the utils script file.\n");
+        }
+        i++;
+      }
+    }
   }
   return 0;
 }
